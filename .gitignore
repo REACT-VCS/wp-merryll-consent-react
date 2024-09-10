@@ -27,3 +27,8 @@ yarn-error.log*
 .env
 .env.build
 .vercel
+pnpm-lock.yaml
+.env.production
+.history
+yarn.lock
+node_modules
