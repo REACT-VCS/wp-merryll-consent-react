@@ -7,7 +7,7 @@ const Layout = () => {
       <nav className="sidebar">
         <ul>
           <li>
-            <Link to="/">Groups</Link>
+            <Link to="/">Groups Layout</Link>
           </li>
           <li>
             <Link to="/cookies">Cookies</Link>
