@@ -1,9 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Form, Input, Button, Space, Typography, Divider, Card } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Space,
+  Typography,
+  Divider,
+  Card,
+  Collapse,
+} from "antd";
 
 const { TextArea } = Input;
 const { Title } = Typography;
+const { Panel } = Collapse;
 
 const CookieGroup = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
@@ -49,57 +59,69 @@ const CookieGroup = () => {
       <Divider />
 
       <Form onSubmitCapture={handleSubmit} layout="vertical">
-        {groups.map((group, index) => (
-          <Card>
-            <div key={index} style={{ marginBottom: "16px" }}>
-              <Form.Item label="Group Title">
-                <Input
-                  name="title"
-                  value={group.title}
-                  onChange={(e) => handleChange(index, e)}
-                  placeholder="Group Title"
-                />
-              </Form.Item>
-              <Form.Item label="Group ID">
-                <Input
-                  name="id"
-                  value={group.id}
-                  onChange={(e) => handleChange(index, e)}
-                  placeholder="Group ID"
-                />
-              </Form.Item>
-              <Form.Item label="Group Description">
-                <TextArea
-                  name="description"
-                  value={group.description}
-                  onChange={(e) => handleChange(index, e)}
-                  placeholder="Group Description"
-                  rows={4}
-                />
-              </Form.Item>
-              <div style={{ textAlign: "right" }}>
-                <Space style={{ textAlign: "right" }}>
-                  <Button
-                    danger
-                    type="primary"
-                    onClick={() => removeGroup(index)}
-                  >
-                    Delete Group
-                  </Button>
-                </Space>
-              </div>
-            </div>
-          </Card>
-        ))}
+        <Collapse>
+          {groups.map((group, index) => (
+            <Panel
+              header={`${(index + 1).toString().padStart(2, "0")} - ${
+                group.title || `Group ${index + 1}`
+              }`}
+              key={index}
+              // disabled={groups.length === 1}
+              extra={
+                <Button
+                  danger
+                  type="primary"
+                  onClick={() => removeGroup(index)}
+                >
+                  Delete Group
+                </Button>
+              }
+            >
+              <Card>
+                <Form.Item label="Group Title">
+                  <Input
+                    name="title"
+                    value={group.title}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Group Title"
+                  />
+                </Form.Item>
+                <Form.Item label="Group ID">
+                  <Input
+                    name="id"
+                    value={group.id}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Group ID"
+                  />
+                </Form.Item>
+                <Form.Item label="Group Description">
+                  <TextArea
+                    name="description"
+                    value={group.description}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Group Description"
+                    rows={4}
+                  />
+                </Form.Item>
+              </Card>
+            </Panel>
+          ))}
+        </Collapse>
 
-        <Space style={{ marginBottom: "16px" }}>
-          <Button type="dashed" onClick={addGroup}>
+        <Space>
+          <Button color="primary" variant="outlined" onClick={addGroup}>
             Add Group
           </Button>
         </Space>
-        <Button type="primary" htmlType="submit">
-          Save
-        </Button>
+        {groups.length > 0 && (
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginLeft: "15px" }}
+          >
+            Save
+          </Button>
+        )}
       </Form>
       <Divider />
       <Title level={3}>Generated JSON:</Title>

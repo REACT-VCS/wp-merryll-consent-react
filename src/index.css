@@ -8,3 +8,21 @@
 .layout {
   display: flex;
 }
+
+:where(.css-dev-only-do-not-override-ni1kz0).ant-collapse
+  > .ant-collapse-item
+  > .ant-collapse-header {
+  align-items: center !important;
+}
+
+:where(.css-dev-only-do-not-override-ni1kz0).ant-collapse > .ant-collapse-item {
+  border-bottom: unset;
+  background: white;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+:where(.css-dev-only-do-not-override-ni1kz0).ant-collapse {
+  background-color: unset;
+  border: unset;
+  border-radius: unset;
+}

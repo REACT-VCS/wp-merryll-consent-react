@@ -1,7 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Input } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Space,
+  Typography,
+  Divider,
+  Card,
+  Select,
+  Collapse,
+} from "antd";
+
 const { TextArea } = Input;
+const { Title } = Typography;
+const { Panel } = Collapse;
+
 const Cookies = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [cookies, setCookies] = useState(() => {
@@ -58,82 +72,132 @@ const Cookies = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("cookies", JSON.stringify(cookies));
-    updateGlobalData({ cookies }); // Update global data
+    updateGlobalData({ cookies });
     alert("Cookies saved!");
   };
 
   return (
     <div>
-      <h2>Cookies</h2>
-      <form onSubmit={handleSubmit}>
-        {cookies.map((cookie, index) => (
-          <div key={index}>
-            <input
-              name="title"
-              value={cookie.title}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Cookie Title"
-            />
-            <input
-              name="id"
-              value={cookie.id}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Cookie ID"
-            />
-            <textarea
-              name="description"
-              value={cookie.description}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Cookie Description"
-            />
-            <input
-              name="pattern"
-              value={cookie.pattern}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Cookie Pattern"
-            />
-            <select
-              name="group"
-              value={cookie.group}
-              onChange={(e) => handleChange(index, e)}
+      <Title level={2}>Cookies</Title>
+      <Divider />
+      <Form onSubmitCapture={handleSubmit} layout="vertical">
+        <Collapse>
+          {cookies.map((cookie, index) => (
+            <Panel
+              header={`${(index + 1).toString().padStart(2, "0")} - ${
+                cookie.title || `Cookie ${index + 1}`
+              }`}
+              key={index}
+              // disabled={groups.length === 1}
+              extra={
+                <Button
+                  danger
+                  type="primary"
+                  onClick={() => removeCookie(index)}
+                >
+                  Delete Group
+                </Button>
+              }
             >
-              <option value="">Select Group</option>
-              {groups.map((group, i) => (
-                <option key={i} value={group.title}>
-                  {group.title}
-                </option>
-              ))}
-            </select>
-            <label>
-              Pre-Selected?
-              <input
-                type="checkbox"
-                name="preSelected"
-                checked={cookie.preSelected}
-                onChange={(e) => handleChange(index, e)}
-              />
-            </label>
-            <label>
-              Configured via Google Tag Manager?
-              <input
-                type="checkbox"
-                name="gtm"
-                checked={cookie.gtm}
-                onChange={(e) => handleChange(index, e)}
-              />
-            </label>
-            <button type="button" onClick={() => removeCookie(index)}>
-              Delete Cookie
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addCookie}>
-          Add Cookie
-        </button>
-        <button type="submit">Save</button>
-      </form>
-      <h3>Generated JSON:</h3>
-      <TextArea rows="10" readOnly value={JSON.stringify(cookies, null, 2)} />
+              <Card key={index} style={{ marginBottom: 16 }}>
+                <Form.Item label="Cookie Title">
+                  <Input
+                    name="title"
+                    value={cookie.title}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Cookie Title"
+                  />
+                </Form.Item>
+                <Form.Item label="Cookie ID">
+                  <Input
+                    name="id"
+                    value={cookie.id}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Cookie ID"
+                  />
+                </Form.Item>
+                <Form.Item label="Cookie Description">
+                  <TextArea
+                    name="description"
+                    value={cookie.description}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Cookie Description"
+                    rows={4}
+                  />
+                </Form.Item>
+                <Form.Item label="Cookie Pattern">
+                  <Input
+                    name="pattern"
+                    value={cookie.pattern}
+                    onChange={(e) => handleChange(index, e)}
+                    placeholder="Cookie Pattern"
+                  />
+                </Form.Item>
+                <Form.Item label="Select Group">
+                  <Select
+                    name="group"
+                    value={cookie.group}
+                    onChange={(value) => {
+                      const newCookies = [...cookies];
+                      newCookies[index].group = value;
+                      setCookies(newCookies);
+                    }}
+                    placeholder="Select Group"
+                  >
+                    <Select.Option value="">Select Group</Select.Option>
+                    {groups.map((group, i) => (
+                      <Select.Option key={i} value={group.title}>
+                        {group.title}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item>
+                  <label>
+                    <input
+                      style={{ marginRight: "15px" }}
+                      type="checkbox"
+                      name="preSelected"
+                      checked={cookie.preSelected}
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                    Pre-Selected?
+                  </label>
+                </Form.Item>
+                <Form.Item>
+                  <label>
+                    <input
+                      style={{ marginRight: "15px" }}
+                      type="checkbox"
+                      name="gtm"
+                      checked={cookie.gtm}
+                      onChange={(e) => handleChange(index, e)}
+                    />
+                    Configured via Google Tag Manager?
+                  </label>
+                </Form.Item>
+              </Card>
+            </Panel>
+          ))}
+        </Collapse>
+        <Space style={{ marginTop: 16 }}>
+          <Button color="primary" variant="outlined" onClick={addCookie}>
+            Add Cookie
+          </Button>
+          {cookies.length > 0 && (
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{ marginLeft: "15px" }}
+            >
+              Save
+            </Button>
+          )}
+        </Space>
+      </Form>
+      <Divider />
+      <Title level={3}>Generated JSON:</Title>
+      <TextArea rows={10} readOnly value={JSON.stringify(cookies, null, 2)} />
     </div>
   );
 };
