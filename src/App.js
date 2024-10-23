@@ -1,27 +1,42 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Groups from "./pages/Groups";
-import Cookies from "./pages/Cookies";
-import Box from "./pages/Box";
-import Settings from "./pages/Settings";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { GlobalProvider } from "./context/GlobalContext";
+import CookieGroup from "./components/CookieGroup";
+import Cookies from "./components/Cookies";
+import CookieBox from "./components/CookieBox";
+import Settings from "./components/Settings";
 
-const App = () => {
-  const [formData, setFormData] = useState({}); // To store submitted form data
-
+function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout formData={formData} />}>
-          <Route index element={<Groups setFormData={setFormData} />} />{" "}
-          {/* Pass setFormData here */}
-          <Route path="cookies" element={<Cookies />} />
-          <Route path="box" element={<Box />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </Router>
+    <GlobalProvider>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/cookie-group">Cookie Group</Link>
+              </li>
+              <li>
+                <Link to="/cookies">Cookies</Link>
+              </li>
+              <li>
+                <Link to="/cookie-box">Cookie Box</Link>
+              </li>
+              <li>
+                <Link to="/settings">Settings</Link>
+              </li>
+            </ul>
+          </nav>
+          <Routes>
+            <Route path="/cookie-group" element={<CookieGroup />} />
+            <Route path="/cookies" element={<Cookies />} />
+            <Route path="/cookie-box" element={<CookieBox />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
+      </Router>
+    </GlobalProvider>
   );
-};
+}
 
 export default App;
