@@ -34,7 +34,7 @@ function App() {
               </ul>
             </nav>
           </Sider>
-          <Content>
+          <Content style={{ padding: "25px" }}>
             <Routes>
               <Route path="/cookie-group" element={<CookieGroup />} />
               <Route path="/cookies" element={<Cookies />} />

@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Input } from "antd";
+import { Form, Input, Button, Space, Typography, Divider, Card } from "antd";
+
 const { TextArea } = Input;
+const { Title } = Typography;
+
 const CookieGroup = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [groups, setGroups] = useState(() => {
@@ -29,7 +32,7 @@ const CookieGroup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("cookieGroups", JSON.stringify(groups));
-    updateGlobalData({ cookieGroups: groups }); // Update global data
+    updateGlobalData({ cookieGroups: groups });
     alert("Cookie Groups saved!");
   };
 
@@ -42,40 +45,65 @@ const CookieGroup = () => {
 
   return (
     <div>
-      <h2>Cookie Groups</h2>
-      <form onSubmit={handleSubmit}>
+      <Title level={2}>Cookie Groups</Title>
+      <Divider />
+
+      <Form onSubmitCapture={handleSubmit} layout="vertical">
         {groups.map((group, index) => (
-          <div key={index}>
-            <input
-              name="title"
-              value={group.title}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Group Title"
-            />
-            <input
-              name="id"
-              value={group.id}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Group ID"
-            />
-            <textarea
-              name="description"
-              value={group.description}
-              onChange={(e) => handleChange(index, e)}
-              placeholder="Group Description"
-            />
-            <button type="button" onClick={() => removeGroup(index)}>
-              Delete Group
-            </button>
-          </div>
+          <Card>
+            <div key={index} style={{ marginBottom: "16px" }}>
+              <Form.Item label="Group Title">
+                <Input
+                  name="title"
+                  value={group.title}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Group Title"
+                />
+              </Form.Item>
+              <Form.Item label="Group ID">
+                <Input
+                  name="id"
+                  value={group.id}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Group ID"
+                />
+              </Form.Item>
+              <Form.Item label="Group Description">
+                <TextArea
+                  name="description"
+                  value={group.description}
+                  onChange={(e) => handleChange(index, e)}
+                  placeholder="Group Description"
+                  rows={4}
+                />
+              </Form.Item>
+              <div style={{ textAlign: "right" }}>
+                <Space style={{ textAlign: "right" }}>
+                  <Button
+                    danger
+                    type="primary"
+                    onClick={() => removeGroup(index)}
+                  >
+                    Delete Group
+                  </Button>
+                </Space>
+              </div>
+            </div>
+          </Card>
         ))}
-        <button type="button" onClick={addGroup}>
-          Add Group
-        </button>
-        <button type="submit">Save</button>
-      </form>
-      <h3>Generated JSON:</h3>
-      <TextArea rows="10" readOnly value={JSON.stringify(groups, null, 2)} />
+
+        <Space style={{ marginBottom: "16px" }}>
+          <Button type="dashed" onClick={addGroup}>
+            Add Group
+          </Button>
+        </Space>
+        <Button type="primary" htmlType="submit">
+          Save
+        </Button>
+      </Form>
+      <Divider />
+      <Title level={3}>Generated JSON:</Title>
+      <TextArea rows={10} readOnly value={JSON.stringify(groups, null, 2)} />
     </div>
   );
 };
