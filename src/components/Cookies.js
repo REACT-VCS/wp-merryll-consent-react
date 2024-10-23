@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-
+import { Input } from "antd";
+const { TextArea } = Input;
 const Cookies = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [cookies, setCookies] = useState(() => {
@@ -132,19 +133,7 @@ const Cookies = () => {
         <button type="submit">Save</button>
       </form>
       <h3>Generated JSON:</h3>
-      <textarea
-        rows="10"
-        cols="50"
-        readOnly
-        value={JSON.stringify(cookies, null, 2)}
-      />
-      <h3>Global JSON:</h3>
-      <textarea
-        rows="10"
-        cols="50"
-        readOnly
-        value={JSON.stringify(globalData, null, 2)}
-      />
+      <TextArea rows="10" readOnly value={JSON.stringify(cookies, null, 2)} />
     </div>
   );
 };
