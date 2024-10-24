@@ -116,7 +116,12 @@ const CookieGroup = () => {
           ))}
         </Collapse>
 
-        <Space style={{ marginTop: 16 }}>
+        <Space
+          style={{
+            marginTop:
+              (globalData?.cookieGroups?.length || groups?.length) > 0 ? 16 : 0,
+          }}
+        >
           <Button color="primary" variant="outlined" onClick={addGroup}>
             Add
           </Button>

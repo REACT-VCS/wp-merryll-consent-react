@@ -93,7 +93,7 @@ const CookieBox = () => {
                   label="Top Right Text Color"
                   name="topRightTextColor"
                 >
-                  <Input placeholder="Top Right Text Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -101,7 +101,7 @@ const CookieBox = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Top Logo Link" name="topLogoLink">
-                  <Input placeholder="Top Logo Link" />
+                  <Input placeholder="Top Logo Link" type="url" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -120,7 +120,7 @@ const CookieBox = () => {
                   label="Powered By Text Color"
                   name="poweredByTextColor"
                 >
-                  <Input placeholder="Powered By Text Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -128,7 +128,7 @@ const CookieBox = () => {
                   label="Footer Powered By Link"
                   name="footerPoweredByLink"
                 >
-                  <Input placeholder="Footer Powered By Link" />
+                  <Input placeholder="Footer Powered By Link" type="url" />
                 </Form.Item>
               </Col>
             </Row>
@@ -178,7 +178,7 @@ const CookieBox = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Heading Font Size" name="headingFontSize">
-                  <Input placeholder="Heading Font Size" />
+                  <Input type="number" placeholder="Heading Font Size" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -186,7 +186,7 @@ const CookieBox = () => {
                   label="Heading Letter Spacing"
                   name="headingLetterSpacing"
                 >
-                  <Input placeholder="Heading Letter Spacing" />
+                  <Input type="number" />
                 </Form.Item>
               </Col>
             </Row>
@@ -194,12 +194,12 @@ const CookieBox = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Body Font Size" name="bodyFontSize">
-                  <Input placeholder="Body Font Size" />
+                  <Input type="number" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="Body Letter Spacing" name="bodyLetterSpacing">
-                  <Input placeholder="Body Letter Spacing" />
+                  <Input type="number" />
                 </Form.Item>
               </Col>
             </Row>
@@ -207,12 +207,12 @@ const CookieBox = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Background Color" name="backgroundColor">
-                  <Input placeholder="Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="Text Color" name="textColor">
-                  <Input placeholder="Text Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -220,12 +220,12 @@ const CookieBox = () => {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Link Color" name="linkColor">
-                  <Input placeholder="Link Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="Link Hover Color" name="linkHoverColor">
-                  <Input placeholder="Link Hover Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -236,12 +236,12 @@ const CookieBox = () => {
                   label="Selection Switch On Color"
                   name="selectionSwitchOnColor"
                 >
-                  <Input placeholder="Selection Switch On Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="Divider Color" name="dividerColor">
-                  <Input placeholder="Divider Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -286,7 +286,7 @@ const CookieBox = () => {
                   label="Accept-All Button Background Color"
                   name="acceptAllButtonBg"
                 >
-                  <Input placeholder="Accept-All Button Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -294,7 +294,7 @@ const CookieBox = () => {
                   label="Accept-All Button Hover Background Color"
                   name="acceptAllButtonHoverBg"
                 >
-                  <Input placeholder="Accept-All Button Hover Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -305,7 +305,7 @@ const CookieBox = () => {
                   label="Accept-Selected Button Background Color"
                   name="acceptSelectedButtonBg"
                 >
-                  <Input placeholder="Accept-Selected Button Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -313,7 +313,7 @@ const CookieBox = () => {
                   label="Accept-Selected Button Hover Background Color"
                   name="acceptSelectedButtonHoverBg"
                 >
-                  <Input placeholder="Accept-Selected Button Hover Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>
@@ -324,7 +324,7 @@ const CookieBox = () => {
                   label="Reject-All Button Background Color"
                   name="rejectAllButtonBg"
                 >
-                  <Input placeholder="Reject-All Button Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -332,7 +332,7 @@ const CookieBox = () => {
                   label="Reject-All Button Hover Background Color"
                   name="rejectAllButtonHoverBg"
                 >
-                  <Input placeholder="Reject-All Button Hover Background Color" />
+                  <Input type="color" />
                 </Form.Item>
               </Col>
             </Row>

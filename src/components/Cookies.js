@@ -193,7 +193,12 @@ const Cookies = () => {
             </Panel>
           ))}
         </Collapse>
-        <Space style={{ marginTop: 16 }}>
+        <Space
+          style={{
+            marginTop:
+              (globalData?.cookies?.length || cookies?.length) > 0 ? 16 : 0,
+          }}
+        >
           <Button color="primary" variant="outlined" onClick={addCookie}>
             Add
           </Button>

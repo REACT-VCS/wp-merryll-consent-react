@@ -39,7 +39,7 @@ const Settings = () => {
     if (savedSettings) {
       const parsedSettings = JSON.parse(savedSettings);
       setSettings(parsedSettings);
-      form.setFieldsValue(parsedSettings);
+      form.setFieldsValue(parsedSettings); // Correctly set saved settings on form
     }
   }, [form]);
 
@@ -57,12 +57,7 @@ const Settings = () => {
           {/* General Tab */}
           <TabPane tab="General" key="1">
             <Form.Item name="enableMerryllCookie" valuePropName="checked">
-              <label>
-                <Checkbox />
-                <span style={{ marginLeft: "8px" }}>
-                  Enable Merryll Cookie?
-                </span>
-              </label>
+              <Checkbox>Enable Merryll Cookie?</Checkbox>
             </Form.Item>
             <Row gutter={16}>
               <Col span={12}>
@@ -84,10 +79,7 @@ const Settings = () => {
           {/* Floating Bar Tab */}
           <TabPane tab="Floating Bar" key="2">
             <Form.Item name="enableFloatingBar" valuePropName="checked">
-              <label>
-                <Checkbox />
-                <span style={{ marginLeft: "8px" }}>Enable Floating Bar?</span>
-              </label>
+              <Checkbox>Enable Floating Bar?</Checkbox>
             </Form.Item>
 
             <Form.Item name="floatingBarText" label="Floating Bar Text">
@@ -118,25 +110,6 @@ const Settings = () => {
                 </Form.Item>
               </Col>
             </Row>
-
-            {/* <Row gutter={16}>
-              <Col span={6}>
-                <Form.Item
-                  name="floatingBarTextColor"
-                  label="Floating Bar Text Color"
-                >
-                  <Input type="color" />
-                </Form.Item>
-              </Col>
-              <Col span={6}>
-                <Form.Item
-                  name="floatingBarHoverTextColor"
-                  label="Floating Bar Hover Text Color"
-                >
-                  <Input type="color" />
-                </Form.Item>
-              </Col>
-            </Row> */}
           </TabPane>
 
           {/* Privacy Policy Tab */}
