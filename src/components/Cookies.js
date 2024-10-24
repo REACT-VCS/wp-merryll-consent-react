@@ -20,19 +20,20 @@ const Cookies = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [cookies, setCookies] = useState(() => {
     const saved = localStorage.getItem("cookies");
-    return saved
-      ? JSON.parse(saved)
-      : [
-          {
-            title: "",
-            id: "",
-            description: "",
-            pattern: "",
-            group: "",
-            preSelected: false,
-            gtm: false,
-          },
-        ];
+    // return saved
+    //   ? JSON.parse(saved)
+    //   : [
+    //       {
+    //         title: "",
+    //         id: "",
+    //         description: "",
+    //         pattern: "",
+    //         group: "",
+    //         preSelected: false,
+    //         gtm: false,
+    //       },
+    //     ];
+    return saved ? JSON.parse(saved) : [];
   });
   const [groups, setGroups] = useState([]);
 
@@ -197,11 +198,15 @@ const Cookies = () => {
             Add
           </Button>
         </Space>
-        {/* {cookies.length > 0 && (
-                      )} */}
-        <Button type="primary" htmlType="submit" style={{ marginLeft: "15px" }}>
-          Save
-        </Button>
+        {(globalData?.cookies?.length || cookies?.length) > 0 && (
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginLeft: "15px" }}
+          >
+            Save
+          </Button>
+        )}
       </Form>
       <Divider />
       <h3 style={{ marginBottom: "20px" }}>JSON:</h3>

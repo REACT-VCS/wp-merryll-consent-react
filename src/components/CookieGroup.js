@@ -19,7 +19,8 @@ const CookieGroup = () => {
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [groups, setGroups] = useState(() => {
     const saved = localStorage.getItem("cookieGroups");
-    return saved ? JSON.parse(saved) : [{ title: "", id: "", description: "" }];
+    // return saved ? JSON.parse(saved) : [{ title: "", id: "", description: "" }];
+    return saved ? JSON.parse(saved) : [];
   });
 
   const addGroup = () => {
@@ -120,11 +121,15 @@ const CookieGroup = () => {
             Add
           </Button>
         </Space>
-        {/* {groups.length > 0 && (
-               )} */}
-        <Button type="primary" htmlType="submit" style={{ marginLeft: "15px" }}>
-          Save
-        </Button>
+        {(globalData?.cookieGroups?.length || groups?.length) > 0 && (
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginLeft: "15px" }}
+          >
+            Save
+          </Button>
+        )}
       </Form>
       <Divider />
       <h3 style={{ marginBottom: "20px" }}>JSON:</h3>
