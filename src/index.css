@@ -16,3 +16,9 @@
 .ant-collapse-header {
   align-items: center !important;
 }
+.globaljsontitlebutton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 0;
+}

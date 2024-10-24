@@ -4,7 +4,7 @@ import CookieGroup from "./components/CookieGroup";
 import Cookies from "./components/Cookies";
 import CookieBox from "./components/CookieBox";
 import Settings from "./components/Settings";
-import { Layout, Input, Menu } from "antd";
+import { Layout, Input, Menu, Button } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { GlobalContext } from "../src/context/GlobalContext";
@@ -36,6 +36,16 @@ function App() {
         setSelectedKey("1"); // Default to Cookie Group
     }
   }, [location.pathname]);
+
+  // Function to handle reset
+  const handleReset = () => {
+    localStorage.removeItem("cookieGroups");
+    localStorage.removeItem("cookieSettings");
+    localStorage.removeItem("cookies");
+    localStorage.removeItem("globalSettings");
+    localStorage.removeItem("settings");
+    window.location.reload();
+  };
 
   return (
     <Layout style={{ height: "100vh" }}>
@@ -92,13 +102,19 @@ function App() {
             overflow: "auto",
           }}
         >
-          <h3 style={{ marginBottom: "15px", marginTop: "15px" }}>
-            Global JSON:
-          </h3>
+          <div className="globaljsontitlebutton">
+            <h3 style={{ marginBottom: "15px", marginTop: "15px" }}>
+              Global JSON:
+            </h3>
+            <Button type="primary" danger onClick={handleReset}>
+              Reset
+            </Button>
+          </div>
+          {/* <button onClick={handleReset}>Reset</button> */}
           <TextArea
             readOnly
             value={JSON.stringify(globalData, null, 2)}
-            style={{ flexGrow: "1", overflow: "auto", height: "95%" }}
+            style={{ flexGrow: "1", overflow: "auto", height: "92%" }}
           />
         </Sider>
       </Layout>
