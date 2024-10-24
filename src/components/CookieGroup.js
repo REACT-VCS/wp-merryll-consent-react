@@ -73,7 +73,7 @@ const CookieGroup = () => {
                   type="primary"
                   onClick={() => removeGroup(index)}
                 >
-                  Delete Group
+                  Delete
                 </Button>
               }
             >

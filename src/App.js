@@ -1,5 +1,11 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import CookieGroup from "./components/CookieGroup";
 import Cookies from "./components/Cookies";
 import CookieBox from "./components/CookieBox";
@@ -16,8 +22,12 @@ function App() {
   return (
     <Router>
       <Layout style={{ height: "100vh" }}>
-        <Header style={{ backgroundColor: "white", textAlign: "center" }}>
-          <h2>Merryll Consent Manager</h2>
+        <Header style={{ backgroundColor: "#F8F8FF", textAlign: "center" }}>
+          <Link to="/">
+            <h2 style={{ textTransform: "uppercase" }}>
+              Merryll Consent Manager
+            </h2>
+          </Link>
         </Header>
         <Layout>
           <Sider
@@ -48,8 +58,9 @@ function App() {
               </Menu.Item>
             </Menu>
           </Sider>
-          <Content style={{ padding: "15px", overflow: "auto" }} width={"60%"}>
+          <Content style={{ padding: "30px", overflow: "auto" }} width={"60%"}>
             <Routes>
+              <Route path="/" element={<Navigate to="/cookie-group" />} />
               <Route path="/cookie-group" element={<CookieGroup />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/cookie-box" element={<CookieBox />} />
@@ -61,6 +72,7 @@ function App() {
             style={{
               backgroundColor: "white",
               padding: "15px",
+              paddingTop: "5px",
               overflow: "auto",
             }}
           >
