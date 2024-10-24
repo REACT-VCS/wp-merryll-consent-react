@@ -55,7 +55,7 @@ const CookieGroup = () => {
 
   return (
     <div>
-      <Title level={2}>Cookie Groups</Title>
+      <h2>Cookie Groups</h2>
       <Divider />
 
       <Form onSubmitCapture={handleSubmit} layout="vertical">
@@ -108,23 +108,19 @@ const CookieGroup = () => {
           ))}
         </Collapse>
 
-        <Space>
+        <Space style={{ marginTop: 16 }}>
           <Button color="primary" variant="outlined" onClick={addGroup}>
-            Add Group
+            Add
           </Button>
         </Space>
-        {groups.length > 0 && (
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ marginLeft: "15px" }}
-          >
-            Save
-          </Button>
-        )}
+        {/* {groups.length > 0 && (
+               )} */}
+        <Button type="primary" htmlType="submit" style={{ marginLeft: "15px" }}>
+          Save
+        </Button>
       </Form>
       <Divider />
-      <Title level={3}>Generated JSON:</Title>
+      <h3 style={{ marginBottom: "20px" }}>JSON:</h3>
       <TextArea rows={10} readOnly value={JSON.stringify(groups, null, 2)} />
     </div>
   );

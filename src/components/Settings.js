@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Form, Input, Button, Tabs, Checkbox, Select } from "antd";
+import { Form, Input, Button, Tabs, Checkbox, Select, Divider } from "antd";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -36,6 +36,7 @@ const Settings = () => {
   return (
     <div>
       <h2>Settings</h2>
+      <Divider />
       <Form
         form={form}
         layout="vertical"
@@ -127,13 +128,12 @@ const Settings = () => {
             </Form.Item>
           </TabPane>
         </Tabs>
-
         <Button type="primary" htmlType="submit">
           Save
         </Button>
       </Form>
-
-      <h3>Generated JSON:</h3>
+      <Divider />
+      <h3 style={{ marginBottom: "20px" }}>JSON:</h3>
       <TextArea rows={10} readOnly value={JSON.stringify(settings, null, 2)} />
     </div>
   );

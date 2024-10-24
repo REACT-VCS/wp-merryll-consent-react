@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Form, Input, Button, Typography, Tabs } from "antd";
+import { Form, Input, Button, Typography, Tabs, Divider } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
 
 const { TextArea } = Input;
@@ -17,6 +17,9 @@ const CookieBox = () => {
       const parsedSettings = JSON.parse(savedSettings);
       form.setFieldsValue(parsedSettings);
       setGeneratedJson(JSON.stringify(parsedSettings, null, 2)); // Set initial JSON from localStorage
+    } else {
+      // If no settings are found, set generatedJson to an empty object
+      setGeneratedJson(JSON.stringify({}, null, 2)); // Now this will show "{}" in the TextArea
     }
   }, [form]);
 
@@ -32,7 +35,8 @@ const CookieBox = () => {
 
   return (
     <div>
-      <Title level={2}>Cookie Settings</Title>
+      <h2>Cookie Settings</h2>
+      <Divider />
       <Form
         form={form}
         layout="vertical"
@@ -252,14 +256,12 @@ const CookieBox = () => {
           </TabPane>
         </Tabs>
 
-        <Button type="primary" htmlType="submit" style={{ marginTop: "20px" }}>
-          Save Settings
+        <Button type="primary" htmlType="submit">
+          Save
         </Button>
       </Form>
-
-      <Title level={3} style={{ marginTop: "40px" }}>
-        Generated JSON:
-      </Title>
+      <Divider />
+      <h3 style={{ marginBottom: "20px" }}>JSON:</h3>
       <TextArea rows={10} readOnly value={generatedJson} />
     </div>
   );

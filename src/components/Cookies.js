@@ -78,7 +78,7 @@ const Cookies = () => {
 
   return (
     <div>
-      <Title level={2}>Cookies</Title>
+      <h2>Cookies</h2>
       <Divider />
       <Form onSubmitCapture={handleSubmit} layout="vertical">
         <Collapse>
@@ -182,21 +182,17 @@ const Cookies = () => {
         </Collapse>
         <Space style={{ marginTop: 16 }}>
           <Button color="primary" variant="outlined" onClick={addCookie}>
-            Add Cookie
+            Add
           </Button>
-          {cookies.length > 0 && (
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{ marginLeft: "15px" }}
-            >
-              Save
-            </Button>
-          )}
         </Space>
+        {/* {cookies.length > 0 && (
+                      )} */}
+        <Button type="primary" htmlType="submit" style={{ marginLeft: "15px" }}>
+          Save
+        </Button>
       </Form>
       <Divider />
-      <Title level={3}>Generated JSON:</Title>
+      <h3 style={{ marginBottom: "20px" }}>JSON:</h3>
       <TextArea rows={10} readOnly value={JSON.stringify(cookies, null, 2)} />
     </div>
   );
