@@ -4,37 +4,51 @@ import CookieGroup from "./components/CookieGroup";
 import Cookies from "./components/Cookies";
 import CookieBox from "./components/CookieBox";
 import Settings from "./components/Settings";
-import { Layout } from "antd";
-import { Content, Footer } from "antd/es/layout/layout";
+import { Layout, Input, Menu, Typography } from "antd";
+import { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { GlobalContext } from "../src/context/GlobalContext";
-import { Input } from "antd";
+
 const { TextArea } = Input;
+const { Title } = Typography;
 function App() {
   const { globalData } = useContext(GlobalContext);
   return (
     <Router>
-      <Layout>
+      <Layout style={{ height: "100vh" }}>
+        <Header style={{ backgroundColor: "white", textAlign: "center" }}>
+          <h2>Merryll Consent Manager</h2>
+        </Header>
         <Layout>
-          <Sider>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/cookie-group">Cookie Group</Link>
-                </li>
-                <li>
-                  <Link to="/cookies">Cookies</Link>
-                </li>
-                <li>
-                  <Link to="/cookie-box">Cookie Box</Link>
-                </li>
-                <li>
-                  <Link to="/settings">Settings</Link>
-                </li>
-              </ul>
-            </nav>
+          <Sider
+            width={"10%"}
+            style={{
+              backgroundColor: "white",
+              padding: "15px",
+              overflow: "auto",
+            }}
+          >
+            <Menu
+              mode="vertical"
+              style={{
+                border: "none",
+              }}
+            >
+              <Menu.Item key="1">
+                <Link to="/cookie-group">Cookie Group</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/cookies">Cookies</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/cookie-box">Cookie Box</Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/settings">Settings</Link>
+              </Menu.Item>
+            </Menu>
           </Sider>
-          <Content style={{ padding: "25px" }}>
+          <Content style={{ padding: "15px", overflow: "auto" }} width={"60%"}>
             <Routes>
               <Route path="/cookie-group" element={<CookieGroup />} />
               <Route path="/cookies" element={<Cookies />} />
@@ -42,14 +56,22 @@ function App() {
               <Route path="/settings" element={<Settings />} />
             </Routes>
           </Content>
+          <Sider
+            width={"30%"}
+            style={{
+              backgroundColor: "white",
+              padding: "15px",
+              overflow: "auto",
+            }}
+          >
+            <Title level={3}>Global JSON:</Title>
+            <TextArea
+              readOnly
+              value={JSON.stringify(globalData, null, 2)}
+              style={{ flexGrow: "1", overflow: "auto", height: "95%" }}
+            />
+          </Sider>
         </Layout>
-        <Footer>
-          <TextArea
-            rows="15"
-            readOnly
-            value={JSON.stringify(globalData, null, 2)}
-          />
-        </Footer>
       </Layout>
     </Router>
   );
