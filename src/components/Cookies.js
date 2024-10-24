@@ -5,15 +5,15 @@ import {
   Input,
   Button,
   Space,
-  Typography,
   Divider,
   Card,
   Select,
   Collapse,
+  Row,
+  Col,
 } from "antd";
 
 const { TextArea } = Input;
-const { Title } = Typography;
 const { Panel } = Collapse;
 
 const Cookies = () => {
@@ -100,22 +100,28 @@ const Cookies = () => {
               }
             >
               <Card key={index} style={{ marginBottom: 16 }}>
-                <Form.Item label="Cookie Title">
-                  <Input
-                    name="title"
-                    value={cookie.title}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="Cookie Title"
-                  />
-                </Form.Item>
-                <Form.Item label="Cookie ID">
-                  <Input
-                    name="id"
-                    value={cookie.id}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="Cookie ID"
-                  />
-                </Form.Item>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item label="Cookie Title">
+                      <Input
+                        name="title"
+                        value={cookie.title}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Cookie Title"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label="Cookie ID">
+                      <Input
+                        name="id"
+                        value={cookie.id}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Cookie ID"
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
                 <Form.Item label="Cookie Description">
                   <TextArea
                     name="description"
@@ -125,34 +131,40 @@ const Cookies = () => {
                     rows={4}
                   />
                 </Form.Item>
-                <Form.Item label="Cookie Pattern">
-                  <Input
-                    name="pattern"
-                    value={cookie.pattern}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="Cookie Pattern"
-                  />
-                </Form.Item>
-                <Form.Item label="Select Group">
-                  <Select
-                    name="group"
-                    value={cookie.group}
-                    onChange={(value) => {
-                      const newCookies = [...cookies];
-                      newCookies[index].group = value;
-                      setCookies(newCookies);
-                    }}
-                    placeholder="Select Group"
-                  >
-                    <Select.Option value="">Select Group</Select.Option>
-                    {groups.map((group, i) => (
-                      <Select.Option key={i} value={group.title}>
-                        {group.title}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item label="Cookie Pattern">
+                      <Input
+                        name="pattern"
+                        value={cookie.pattern}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Cookie Pattern"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label="Select Group">
+                      <Select
+                        name="group"
+                        value={cookie.group}
+                        onChange={(value) => {
+                          const newCookies = [...cookies];
+                          newCookies[index].group = value;
+                          setCookies(newCookies);
+                        }}
+                        placeholder="Select Group"
+                      >
+                        <Select.Option value="">Select Group</Select.Option>
+                        {groups.map((group, i) => (
+                          <Select.Option key={i} value={group.title}>
+                            {group.title}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <div>
                   <label>
                     <input
                       style={{ marginRight: "15px" }}
@@ -163,8 +175,8 @@ const Cookies = () => {
                     />
                     Pre-Selected?
                   </label>
-                </Form.Item>
-                <Form.Item>
+                </div>
+                <div>
                   <label>
                     <input
                       style={{ marginRight: "15px" }}
@@ -175,7 +187,7 @@ const Cookies = () => {
                     />
                     Configured via Google Tag Manager?
                   </label>
-                </Form.Item>
+                </div>
               </Card>
             </Panel>
           ))}

@@ -5,14 +5,14 @@ import {
   Input,
   Button,
   Space,
-  Typography,
   Divider,
   Card,
   Collapse,
+  Col,
+  Row,
 } from "antd";
 
 const { TextArea } = Input;
-const { Title } = Typography;
 const { Panel } = Collapse;
 
 const CookieGroup = () => {
@@ -78,22 +78,29 @@ const CookieGroup = () => {
               }
             >
               <Card>
-                <Form.Item label="Group Title">
-                  <Input
-                    name="title"
-                    value={group.title}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="Group Title"
-                  />
-                </Form.Item>
-                <Form.Item label="Group ID">
-                  <Input
-                    name="id"
-                    value={group.id}
-                    onChange={(e) => handleChange(index, e)}
-                    placeholder="Group ID"
-                  />
-                </Form.Item>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item label="Group Title">
+                      <Input
+                        name="title"
+                        value={group.title}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Group Title"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item label="Group ID">
+                      <Input
+                        name="id"
+                        value={group.id}
+                        onChange={(e) => handleChange(index, e)}
+                        placeholder="Group ID"
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
+
                 <Form.Item label="Group Description">
                   <TextArea
                     name="description"
