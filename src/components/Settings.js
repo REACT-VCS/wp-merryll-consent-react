@@ -11,12 +11,14 @@ import {
   Row,
   Col,
 } from "antd";
+import { useMediaQuery } from "react-responsive";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Option } = Select;
 
 const Settings = () => {
+  const max425 = useMediaQuery({ query: "(max-width: 425px)" });
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [form] = Form.useForm();
   const [settings, setSettings] = useState(() => {
@@ -60,12 +62,12 @@ const Settings = () => {
               <Checkbox>Enable Merryll Cookie?</Checkbox>
             </Form.Item>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item name="cookieName" label="Cookie Name">
                   <Input placeholder="Enter Cookie Name" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   name="cookieExpiration"
                   label="Cookie Expiration (in Days)"
@@ -81,17 +83,17 @@ const Settings = () => {
             <Form.Item name="enableFloatingBar" valuePropName="checked">
               <Checkbox>Enable Floating Bar?</Checkbox>
             </Form.Item>
-
             <Form.Item name="floatingBarText" label="Floating Bar Text">
               <Input placeholder="Enter Floating Bar Text" />
             </Form.Item>
+
             <Row gutter={16}>
-              <Col span={6}>
+              <Col span={max425 ? 12 : 6}>
                 <Form.Item name="floatingBarBgColor" label="Background ">
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={max425 ? 12 : 6}>
                 <Form.Item
                   name="floatingBarHoverBgColor"
                   label="Hover Background"
@@ -99,12 +101,12 @@ const Settings = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={max425 ? 12 : 6}>
                 <Form.Item name="floatingBarTextColor" label="Text Color">
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={max425 ? 12 : 6}>
                 <Form.Item name="floatingBarHoverTextColor" label="Text Hover">
                   <Input type="color" />
                 </Form.Item>
@@ -115,7 +117,7 @@ const Settings = () => {
           {/* Privacy Policy Tab */}
           <TabPane tab="Privacy Policy" key="3">
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item name="privacyPolicyPage" label="Privacy Policy Page">
                   <Select placeholder="Select Privacy Policy Page">
                     <Option value="page1">Page 1</Option>
@@ -124,7 +126,7 @@ const Settings = () => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item name="privacyPolicyName" label="Privacy Policy Name">
                   <Input placeholder="Enter Privacy Policy Name" />
                 </Form.Item>

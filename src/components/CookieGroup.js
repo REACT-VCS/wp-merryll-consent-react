@@ -11,11 +11,12 @@ import {
   Col,
   Row,
 } from "antd";
-
+import { useMediaQuery } from "react-responsive";
 const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const CookieGroup = () => {
+  const max425 = useMediaQuery({ query: "(max-width: 425px)" });
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [groups, setGroups] = useState(() => {
     const saved = localStorage.getItem("cookieGroups");
@@ -80,7 +81,7 @@ const CookieGroup = () => {
             >
               <Card>
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Group Title">
                       <Input
                         name="title"
@@ -90,7 +91,7 @@ const CookieGroup = () => {
                       />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Group ID">
                       <Input
                         name="id"

@@ -12,11 +12,12 @@ import {
   Row,
   Col,
 } from "antd";
-
+import { useMediaQuery } from "react-responsive";
 const { TextArea } = Input;
 const { Panel } = Collapse;
 
 const Cookies = () => {
+  const max425 = useMediaQuery({ query: "(max-width: 425px)" });
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [cookies, setCookies] = useState(() => {
     const saved = localStorage.getItem("cookies");
@@ -102,7 +103,7 @@ const Cookies = () => {
             >
               <Card key={index} style={{ marginBottom: 16 }}>
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Cookie Title">
                       <Input
                         name="title"
@@ -112,7 +113,7 @@ const Cookies = () => {
                       />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Cookie ID">
                       <Input
                         name="id"
@@ -133,7 +134,7 @@ const Cookies = () => {
                   />
                 </Form.Item>
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Cookie Pattern">
                       <Input
                         name="pattern"
@@ -143,7 +144,7 @@ const Cookies = () => {
                       />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col span={max425 ? 24 : 12}>
                     <Form.Item label="Select Group">
                       <Select
                         name="group"

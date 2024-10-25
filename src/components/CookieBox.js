@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
-import { Form, Input, Button, Typography, Tabs, Divider, Row, Col } from "antd";
+import { Form, Input, Button, Tabs, Divider, Row, Col } from "antd";
 import TabPane from "antd/es/tabs/TabPane";
-
+import { useMediaQuery } from "react-responsive";
 const { TextArea } = Input;
-const { Title } = Typography;
 
 const CookieBox = () => {
+  const max425 = useMediaQuery({ query: "(max-width: 425px)" });
   const { globalData, updateGlobalData } = useContext(GlobalContext);
   const [form] = Form.useForm();
   const [generatedJson, setGeneratedJson] = useState("");
@@ -83,12 +83,12 @@ const CookieBox = () => {
               <Input placeholder="Top Left Logo URL" />
             </Form.Item>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Top Right Text" name="topRightText">
                   <Input placeholder="Top Right Text" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Top Right Text Color"
                   name="topRightTextColor"
@@ -99,12 +99,12 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Top Logo Link" name="topLogoLink">
                   <Input placeholder="Top Logo Link" type="url" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Footer Powered By Text"
                   name="footerPoweredByText"
@@ -115,7 +115,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Powered By Text Color"
                   name="poweredByTextColor"
@@ -123,7 +123,7 @@ const CookieBox = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Footer Powered By Link"
                   name="footerPoweredByLink"
@@ -136,7 +136,7 @@ const CookieBox = () => {
 
           <TabPane tab="Texts" key="2">
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Consent Modal Top Title"
                   name="consentModalTopTitle"
@@ -144,7 +144,7 @@ const CookieBox = () => {
                   <Input placeholder="Consent Modal Top Title" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Consent Modal Top Description"
                   name="consentModalTopDescription"
@@ -155,7 +155,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Toggle All On/Off Title"
                   name="toggleAllTitle"
@@ -163,7 +163,7 @@ const CookieBox = () => {
                   <Input placeholder="Toggle All On/Off Title" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Toggle All On/Off Description"
                   name="toggleAllDescription"
@@ -176,12 +176,12 @@ const CookieBox = () => {
 
           <TabPane tab="Appearance" key="3">
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Heading Font Size" name="headingFontSize">
                   <Input type="number" placeholder="Heading Font Size" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Heading Letter Spacing"
                   name="headingLetterSpacing"
@@ -192,12 +192,12 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Body Font Size" name="bodyFontSize">
                   <Input type="number" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Body Letter Spacing" name="bodyLetterSpacing">
                   <Input type="number" />
                 </Form.Item>
@@ -205,12 +205,12 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Background Color" name="backgroundColor">
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Text Color" name="textColor">
                   <Input type="color" />
                 </Form.Item>
@@ -218,12 +218,12 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Link Color" name="linkColor">
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Link Hover Color" name="linkHoverColor">
                   <Input type="color" />
                 </Form.Item>
@@ -231,7 +231,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Selection Switch On Color"
                   name="selectionSwitchOnColor"
@@ -239,7 +239,7 @@ const CookieBox = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Divider Color" name="dividerColor">
                   <Input type="color" />
                 </Form.Item>
@@ -252,12 +252,12 @@ const CookieBox = () => {
               <Input placeholder="Button Type" />
             </Form.Item>
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Accept-All Button Text" name="acceptAllText">
                   <Input placeholder="Accept-All Button Text" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Accept-Selected Button Text"
                   name="acceptSelectedText"
@@ -268,12 +268,12 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Reject-All Button Text" name="rejectAllText">
                   <Input placeholder="Reject-All Button Text" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item label="Save Button Text" name="saveButtonText">
                   <Input placeholder="Save Button Text" />
                 </Form.Item>
@@ -281,7 +281,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Accept-All Button Background Color"
                   name="acceptAllButtonBg"
@@ -289,7 +289,7 @@ const CookieBox = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Accept-All Button Hover Background Color"
                   name="acceptAllButtonHoverBg"
@@ -300,7 +300,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Accept-Selected Button Background Color"
                   name="acceptSelectedButtonBg"
@@ -308,7 +308,7 @@ const CookieBox = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Accept-Selected Button Hover Background Color"
                   name="acceptSelectedButtonHoverBg"
@@ -319,7 +319,7 @@ const CookieBox = () => {
             </Row>
 
             <Row gutter={16}>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Reject-All Button Background Color"
                   name="rejectAllButtonBg"
@@ -327,7 +327,7 @@ const CookieBox = () => {
                   <Input type="color" />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={max425 ? 24 : 12}>
                 <Form.Item
                   label="Reject-All Button Hover Background Color"
                   name="rejectAllButtonHoverBg"
