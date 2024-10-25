@@ -8,10 +8,11 @@ import { Layout, Input, Menu, Button } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { GlobalContext } from "../src/context/GlobalContext";
-
+import { useMediaQuery } from "react-responsive";
 const { TextArea } = Input;
 
 function App() {
+  const isLargeScreen = useMediaQuery({ query: "(min-width: 1024px)" });
   const { globalData } = useContext(GlobalContext);
   const location = useLocation(); // Get current path
   const [selectedKey, setSelectedKey] = useState("");
@@ -48,7 +49,7 @@ function App() {
   };
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: isLargeScreen ? "100vh" : "auto" }}>
       <Header style={{ backgroundColor: "#F8F8FF", textAlign: "center" }}>
         <Link to="/">
           <h2 style={{ textTransform: "uppercase" }}>
@@ -56,9 +57,9 @@ function App() {
           </h2>
         </Link>
       </Header>
-      <Layout>
+      <Layout style={{ flexDirection: isLargeScreen ? "row" : "column" }}>
         <Sider
-          width={"15%"}
+          width={isLargeScreen ? "15%" : "100%"}
           style={{
             backgroundColor: "white",
             padding: "15px",
@@ -66,7 +67,7 @@ function App() {
           }}
         >
           <Menu
-            mode="vertical"
+            mode={isLargeScreen ? "vertical" : "horizontal"}
             style={{ border: "none" }}
             selectedKeys={[selectedKey]} // Set active link
           >
@@ -84,7 +85,13 @@ function App() {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Content style={{ padding: "30px", overflow: "auto" }} width={"50%"}>
+        <Content
+          style={{
+            padding: "30px",
+            overflow: "auto",
+            width: isLargeScreen ? "50%" : "100%",
+          }}
+        >
           <Routes>
             <Route path="/" element={<Navigate to="/cookie-group" />} />
             <Route path="/cookie-group" element={<CookieGroup />} />
@@ -94,7 +101,7 @@ function App() {
           </Routes>
         </Content>
         <Sider
-          width={"35%"}
+          width={isLargeScreen ? "35%" : "100%"}
           style={{
             backgroundColor: "white",
             padding: "15px",
@@ -112,6 +119,7 @@ function App() {
           </div>
           {/* <button onClick={handleReset}>Reset</button> */}
           <TextArea
+            rows={20}
             readOnly
             value={JSON.stringify(globalData, null, 2)}
             style={{ flexGrow: "1", overflow: "auto", height: "92%" }}

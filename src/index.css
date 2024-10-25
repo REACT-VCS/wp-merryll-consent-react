@@ -3,22 +3,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .ant-collapse {
   display: grid !important;
   grid-row-gap: 5px !important;
   border: unset !important;
 }
+
 .ant-collapse-item {
   border: unset !important;
   background-color: white !important;
   border-radius: 5px;
 }
+
 .ant-collapse-header {
   align-items: center !important;
 }
+
 .globaljsontitlebutton {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 6px 0;
 }
+
+/* ===  */
